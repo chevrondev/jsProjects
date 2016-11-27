@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JavaScript Back To Top</title>
+		
+		
+		<style>			
+			.wrapper{
+				width: 100%;
+				height: 1500px;
+				background-color: #fff;
+			}
+			
+			#bttp {
+			   position:fixed;
+			   bottom:0;
+			   width: 50px;
+			   height: 80px;   
+			   text-align: center;
+			   line-height: 90px;
+			   margin-left: 1100px;
+			   display: none;
+			   cursor: pointer;
+			}
+			
+			.mouseOver a:hover {
+				background: red;
+				opacity: 0.2;
+				text-decoration: none;
+			}
+			
+			#top{
+				width:100%;
+				height:50px;   
+				background:#6cf;
+			}			
+		</style>
+		
+	</head>
+	<body>
+		
+		
+		<section class="wrapper">
+			<section>
+				<article id="top">
+					
+					
+				</article>
+			</section>
+			<section>
+				<article id="artcl">
+					<h1>Back To Top</h1>
+					
+					
+				</article>
+			</section>
+			
+			<a href="#" class="mouseOver"><div id="bttp" onmouseover="overTop()" onmouseout="outTop()">
+		
+			<canvas id="myCanvas">
+					
+			</canvas>
+			<script>
+				var canvas = document.querySelector("canvas").getContext("2d");
+				
+				canvas.beginPath();
+				canvas.moveTo(25, 0);
+				canvas.lineTo(0, 40);
+				canvas.lineTo(50, 40);
+				canvas.fill();
+						
+				canvas.beginPath();
+				canvas.moveTo(0, 75);
+				canvas.lineTo(50, 75);
+				canvas.lineTo(25, 40);
+				canvas.fill();			
+			</script>
+		</div></a>
+	</body>
+	<script type="text/javascript">
+		
+		var display = document.getElementById("bttp");
+		
+		window.onscroll = function() {scrollDown()};
+		function scrollDown() {
+			if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
+				display.style.display = "block";
+			} else{
+				display.style.display = "none";
+			}
+		}
+
+		function overTop(){
+			var display = document.getElementById("bttp");
+			display.style.opacity = 0.2;
+		}
+		
+		function outTop(){
+			var display = document.getElementById("bttp");
+			display.style.opacity = 1;
+		}
+	</script>
+</html>

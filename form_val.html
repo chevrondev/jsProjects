@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JavaScript Form validation</title>
+		<style>
+			h1{
+				text-align: center;
+				color: #194c66;
+			}
+
+			.inptFld{
+				margin: 5px;
+				width: 200px;
+				 padding: ;
+				 border-style: none;
+				 background-color: #fff;
+				
+			}
+			
+			table{
+				background-color: #f1f1f1;
+				margin-left: 34%;
+				padding: 0 3% 3% 3%;
+				
+			}
+			
+			#gn{
+				background-color: #f2f2f2;
+			}
+			
+			td:nth-child(even){
+				width: 200px;
+				background-color: #fff;
+				padding-top: 1px;	
+			}
+			
+			th{
+				padding: 5%;
+				color: #194c66;
+			}
+			
+			.tableData{
+				width: 100px;
+				margin-top: 10px;
+				color: #fff;
+				background-color: #194c66;
+				padding: 5px;
+				font-size: 86%;
+			}
+			
+			#reds{
+				color: red;
+			}
+			
+			#greens{
+				color: green;
+			}
+			
+			button{
+				width: 100px;
+				height: 40px;
+				cursor: pointer;
+				margin: 10px;
+				color: #fff;
+				background-color: #194c66;
+				border: none;
+			}
+			
+			div{
+			margin-left: 34%;
+			padding-left: 10%;
+			}
+			
+			.rd{
+				color: #ff0000;
+				margin-left: 10px;
+				font-size: 70%;
+				font-style: italic;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<section class="regForm">
+			<h1>JavaScript Form Validation</h1>
+			<table>
+				<form name="userFrm" action="">
+					<th colspan="2">Member's Retistration</th>
+					<tr>
+						<td class="tableData">First name</td>
+						<td><input class="inptFld" id="fname" name="fname" type="text" onblur="valdtFname()"></td>
+						<td><span class="rd" id="fnameSpn1"></span><span class="grn" id="fnameSpn2"></span></td>
+					</tr>
+						
+					<tr>
+						<td class="tableData">Last Name</td>
+						<td><input class="inptFld" id="lname" name="lname" type="text" onblur="valdtLname()"></td>
+						<td><span class="rd" id="lnameSpn1"></span><span class="grn" id="lnameSpn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Username</td>
+						<td><input class="inptFld" id="uname" name="uname" type="text" onblur="valdtUname()"></td>
+						<td><span class="rd" id="unameSpn1"></span><span class="grn" id="unameSpn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Street n&#176;</td>
+						<td><input class="inptFld" id="numb" name="numb" type="text" onblur="valdtNumb()"></td>
+						<td><span class="rd" id="numbSpn1"></span><span class="grn" id="numbSpn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Street</td>
+						<td><input class="inptFld" id="strt" name="strt" type="text" onblur="valdtStrt()"></td>
+						<td><span class="rd" id="strtSpn1"></span><span class="grn" id="strtSpn2"></span></td>
+					</tr>
+						
+					<tr>
+						<td class="tableData">Postcode</td>
+						<td><input class="inptFld" id="pstcd" name="pstcd" type="text" onblur="valdtPstcd()"></td>
+						<td><span class="rd" id="pcSpn1"></span><span class="grn" id="pcSpn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Email</td>
+						<td><input class="inptFld" id="mail" name="mail" type="text" onblur="valdtMail()"></td>
+						<td><span class="rd" id="emlSpn1"></span><span class="grn" id="emlSpn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Mobile</td>
+						<td><input class="inptFld" id="mobl" name="mobl" type="text" onblur="valdtMobl()"></td>
+						<td><span class="rd" id="moblSpn1"></span><span class="grn" id="moblSpn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Password 1</td>
+						<td><input class="inptFld" id="passwrd" name="passwrd" type="password" onblur="valdtPass()"></td>
+						<td><span class="rd" id="pass1Spn1"></span><span class="grn" id="pass1Spn2"></span></td>
+					</tr>
+					
+					<tr>
+						<td class="tableData">Password 2</td>
+						<td><input class="inptFld" id="rpass" name="rpass" type="password" onblur="valdtRpass()"></span></td>
+						<td><span class="rd" id="pass2Spn1"></span><span class="grn" id="pass2Spn2"></span></td>
+					</tr>					
+				</form>
+			</table>
+			<div>
+				<button type="button" id="bttnsnd" name="bttnsnd" onclick="submtForm()">Send</button><span id="sumtSpn"></span>
+				<button type="button" id="bttnrst" name="bttnrst" onclick="formReset()">Reset</button>
+			</div>
+		</section>
+	</body>
+	
+	<script type="text/javascript">
+		
+		var err1 = "This field can't be blank";
+		var err2 = "This field should only have alphabetical letters";
+		var err3 = "This field should be at least three chars";
+		
+		function valdtFname(){
+			var fNameValue = document.getElementById('fname').value;
+			var spn1 = document.getElementById('fnameSpn1');
+			var spn2 = document.getElementById('fnameSpn2');
+			var noneWordChar_regex = fNameValue.match(/^[A-Za-z]*$/);
+			
+			if(fNameValue == "" || fNameValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = err2;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(fNameValue.length < 3){
+				spn1.innerHTML = err3;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtLname(){
+			var lNameValue = document.getElementById('lname').value;
+			var spn1 = document.getElementById('lnameSpn1');
+			var spn2 = document.getElementById('lnameSpn2');
+			var noneWordChar_regex = lNameValue.match(/^[A-Za-z]*$/);
+			
+			if(lNameValue == "" || lNameValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = err2;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(lNameValue.length < 3){
+				spn1.innerHTML = err3;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtUname(){
+			var uNameValue = document.getElementById('uname').value;
+			var spn1 = document.getElementById('unameSpn1');
+			var spn2 = document.getElementById('unameSpn2');
+			var noneWordChar_regex = uNameValue.match(/^[A-Za-z]*$/);
+			
+			if(uNameValue == "" || uNameValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = err2;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(uNameValue.length < 3){
+				spn1.innerHTML = err3;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtNumb(){
+			var numbValue = document.getElementById('numb').value;
+			var spn1 = document.getElementById('numbSpn1');
+			var spn2 = document.getElementById('numbSpn2');
+			var noneWordChar_regex = numbValue.match(/^\d{1,4}$/);
+			
+			if(numbValue == "" || numbValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = "This field can't contain letters";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(numbValue.length > 4){
+				spn1.innerHTML = "Only for digits";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		
+		function valdtStrt(){
+			var strtValue = document.getElementById('strt').value;
+			var spn1 = document.getElementById('strtSpn1');
+			var spn2 = document.getElementById('strtSpn2');
+			var noneWordChar_regex = strtValue.match(/^[A-Za-z]{3,50}\s[A-Za-z]{3,50}$/);
+			
+			if(strtValue == "" || strtValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = err2;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(strtValue.length < 3){
+				spn1.innerHTML = err3;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtPstcd(){
+			var pcValue = document.getElementById('pstcd').value;
+			var spn1 = document.getElementById('pcSpn1');
+			var spn2 = document.getElementById('pcSpn2');
+			var noneWordChar_regex = pcValue.match(/^[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}$/);
+			
+			if(pcValue == "" || pcValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = "Not a valid UK postcode";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(pcValue.length < 3){
+				spn1.innerHTML = "This field is incomplete";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtMail(){
+			var mailValue = document.getElementById('mail').value;
+			var spn1 = document.getElementById('emlSpn1');
+			var spn2 = document.getElementById('emlSpn2');
+			var noneWordChar_regex = mailValue.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/);
+			
+			if(mailValue == "" || mailValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = "Not a valid email address";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtMobl(){
+			var moblValue = document.getElementById('mobl').value;
+			var spn1 = document.getElementById('moblSpn1');
+			var spn2 = document.getElementById('moblSpn2');
+			var noneWordChar_regex = moblValue.match(/^[0]{1}[7]{1}\d{9}$/);
+			
+			if(moblValue == "" || moblValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = "Not a valid UK mobile number";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(moblValue.length > 11){
+				spn1.innerHTML = "The maximum is 11 digits";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtPass(){
+			var passValue = document.getElementById('passwrd').value;
+			var spn1 = document.getElementById('pass1Spn1');
+			var spn2 = document.getElementById('pass1Spn2');
+			var noneWordChar_regex = passValue.match(/^[A-Za-z]{8,16}[0-9]{1,4}/);
+			
+			if(passValue == "" || passValue == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = "The password should have 8 character and 1 to 4 digits";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(passValue.length > 16){
+				spn1.innerHTML = "The maximum is 16 characters";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function valdtRpass(){
+			var pass2Value = document.getElementById('rpass').value;
+			var passValue = document.getElementById('passwrd').value;
+			var spn1 = document.getElementById('pass2Spn1');
+			var spn2 = document.getElementById('pass2Spn2');
+			var noneWordChar_regex = pass2Value.match(/^[A-Za-z]{8,16}[0-9]{1,4}/);
+			
+			if(pass2Value == "" || pass2Value == null){
+				spn1.innerHTML = err1;
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!noneWordChar_regex){
+				spn1.innerHTML = "Both password don't match";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else if(!passValue == pass2Value){
+				spn1.innerHTML = "Both password don't match";
+				spn2.innerHTML = "";
+				return false;
+				
+			}else{
+				spn2.innerHTML = "&#10004";
+				spn1.innerHTML = "";
+				return true;
+			}
+		}
+		
+		function submtForm(){
+			if(!valdtFname() || !valdtLname() || !valdtUname() || !valdtNumb() || !valdtStrt() 
+			|| !valdtPstcd() || !valdtMail() || !valdtMobl() || !valdtPass() || !valdtRpass())
+			{
+			alert("All fields must be filled in");
+			return false;
+			
+			}else{
+				//submitToDatabase();
+				alert("The registration form has been submitted");
+			}
+		}
+		
+		function formReset(){
+			userFrm.reset();
+			spn2.innerHTML = "";
+			spn1.innerHTML = "";
+		}
+	</script>
+</html>

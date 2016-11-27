@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JavaScript Sticky Navigation</title>
+		
+		
+		<style>
+			
+			body{
+				margin: 0;
+			}
+			
+			.banner{
+				width: 100%;
+				height: 400px;
+				background-color: #004c7f;
+			}
+			
+			.wrapper{
+				width: 100%;
+				height: 150px;
+				text-align: center;
+				background-color: #fff;
+			}
+			
+			.navArea{
+				width: 100%;
+				float: left;
+				background-color: #004c7f;
+			}
+			
+			nav ul{
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			nav ul li:hover{
+				background-color: #001966;
+			}
+			
+			nav ul li a:link, a:visited{
+				color: #fff;
+				text-decoration: none;
+				padding: 10px;
+				display: block;
+			}
+			
+			nav ul li{
+				display: inline-block; 
+				background-color: #004c7f;
+				width: 100px;
+			}
+			
+			nav ul ul{
+				background-color: #004c7f;
+				display: none;
+				z-index: 1;
+				padding: 0;
+			}
+			
+			nav ul li:hover ul{
+				display: block;
+				position: absolute;
+			}
+			
+			nav ul li ul li{
+				display: block;
+			}
+			
+			nav ul ul li a{
+				text-align: left;
+			}
+			
+			nav ul ul li a:hover{
+				background-color: #001966;
+			}
+			
+			.fixedClass{
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 1;
+			}
+			
+			.text{
+				width: 100%;
+				height: 1500px;
+				padding-left: 90px;
+				background-color: #fff;
+			}
+			
+			.content{
+				width: 500px;
+				background-color: #fff;
+				padding: 28px;
+				font-family: calibri;
+				font-size: 18px;
+				color: #444;
+				margin-left: 210px;
+				max-height: 270px;
+			}
+			
+			
+			
+		</style>
+		
+		<!--
+			padding: 14px 25px;
+			text-align: center;
+			
+		-->
+		
+	</head>
+	<body>
+		<section class="banner">
+			
+		</section>
+		
+		<section class="wrapper">			
+			<article class="navArea">
+				<nav id="navId">
+					<ul id="navBar" onmouseover="mover()">
+						<li id="headList"><a href="#">Oceans</a>
+							<ul id="subList">
+								<li><a href="#">Atlantic</a></li>
+								<li><a href="#">Indian</a></li>
+								<li><a href="#">Pacific</a></li>
+								<li><a href="#">Artic</a></li>
+							</ul>
+						</li>
+						
+						<li id="headList"><a href="#">Seas</a>
+							<ul id="subList">
+								<li><a href="#">Greeland</a></li>
+								<li><a href="#">Barents</a></li>
+								<li><a href="#">Red</a></li>
+								<li><a href="#">Med.</a></li>
+							</ul>
+						</li>
+						
+						<li id="headList"><a href="#">Gulfs</a>
+							<ul id="subList">
+								<li><a href="#">Mexico</a></li>
+								<li><a href="#">Guinea</a></li>
+								<li><a href="#">California</a></li>
+								<li><a href="#">Alaska</a></li>
+							</ul>
+						</li>
+						
+						<li id="lists"><a href="#">About</a></li>
+						<li id="lists"><a href="#">Conacts</a></li>
+					</ul>
+				</nav>
+			</article>
+		</section><!--/ nav section-->
+		
+		<section class="text">
+			<article class="content">
+				<h1>JavaScript</h1>
+				<p>
+					In computing, JavaScript is a high-level, dynamic, untyped, and interpreted programming language.
+					It has been standardized in the ECMAScript language specification.Alongside HTML and CSS, JavaScript is one of the 
+					three core technologies of World Wide Web content production; the majority of websites employ it, and all modern 
+					Web browsers supported it without the need for plug-ins. JavaScript is prototype-based with first-class functions, 
+					making it a multi-paradigm language, supporting object-oriented, imperative, and functional programming styles.
+					It has an API for working with text, arrays, dates and regular expressions, but does not include any I/O, such as 
+					networking, storage, or graphics facilities, relying for these upon the host environment in which it is embedded.
+					Although there are strong outward similarities between JavaScript and Java, including language name, syntax, and 
+					respective standard libraries, the two are distinct languages and differ greatly in their design. JavaScript was 
+					influenced by programming languages such as Self and Scheme.
+					JavaScript is also used in environments that are not Web-based, such as PDF documents, site-specific browsers, and 
+					desktop widgets. Newer and faster JavaScript virtual machines (VMs) and platforms built upon them have also increased 
+					the popularity of JavaScript for server-side Web applications. On the client side, developers have traditionally 
+					implemented JavaScript as an interpreted language, but more recent browsers perform just-in-time compilation.
+					Programmers also use JavaScript in video-game development, in crafting desktop and mobile applications, and in 
+					server-side network programming with run-time environments such as Node.js.
+				</p>
+			</article>
+		</section>
+			
+	</body>
+	<script type="text/javascript">
+		
+		window.onscroll = function() {stickyNav()};
+		var navHeight = document.getElementById('navId').offsetTop;
+		
+		function stickyNav() {
+			if (document.body.scrollTop > navHeight || document.documentElement.scrollTop > navHeight) {
+				document.getElementById("navId").className = "fixedClass";
+			} else {
+				document.getElementById("navId").className = "";
+			}
+		}
+	</script>
+</html>

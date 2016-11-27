@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JavaScript String Manipulations</title>
+		
+		
+		<style>			
+			.wrapper{
+				width: 100%;
+				height: 500px;
+				background-color: #fff;
+			}
+			
+			table tr{
+				text-align: left;
+			}
+			
+			#originalStr{
+				font-size: 24px;
+			} 
+			
+		</style>		
+	</head>
+	<body>
+		
+		
+		<section class="wrapper">
+			<section>
+				<article>
+					<h1>String Manipulations</h1>
+					<form>
+						 <table>
+							<tr>
+								<th>Enter a string</th>
+							</tr>
+							<tr>
+								<td><input id="fld" type="text" name="firstname" value=""></td>
+							</tr>
+							<tr>
+								<td><button type="button" onclick="palndrmFctn()">Palindrome</button></td>
+							</tr>
+							<tr>
+								<td><button type="button" onclick="spltFctn()">Split</button></td>
+							</tr>
+							<tr>
+								<td><button type="button" onclick="revrsFctn()">Reverse</button></td>
+							</tr>
+							<tr>
+								<td><button type="button" onclick="lengthFctn()">Length</button></td>
+							</tr>
+						</table>
+					</form>
+				</article>
+			</section>
+			
+			
+		<p id="originalStr"></p>
+			
+	</body>
+	<script type="text/javascript">
+		function palndrmFctn(){
+			var orgnl = document.getElementById("fld").value;
+				var str = orgnl.split("").reverse("").join('');
+			if(orgnl == str){
+				document.getElementById("originalStr").innerHTML = "'" + orgnl + "'" + " <br>is a palindrom";
+				document.querySelector("input").focus();
+		
+			}else{
+				document.getElementById("originalStr").innerHTML = "'" + orgnl + "'" + " <br>is not a palindrom";
+				document.querySelector("input").focus();
+			}
+		}
+		
+		function spltFctn(){
+			var orgnl = document.getElementById("fld").value;
+			var str = orgnl.split("");
+			document.getElementById("originalStr").innerHTML = str.join(" - ");
+			document.querySelector("input").focus();
+		}
+		
+		function revrsFctn(){
+			var orgnl = document.getElementById("fld").value;
+			var str = orgnl.split("").reverse("");
+			document.getElementById("originalStr").innerHTML = str.join(" ");
+			document.querySelector("input").focus();
+		}
+		
+		function lengthFctn(){
+			var orgnl = document.getElementById("fld").value;
+			var str = orgnl.length;
+			document.getElementById("originalStr").innerHTML = "'" + orgnl + "'" + " has " + str + " characters";
+			document.querySelector("input").focus();
+		}
+	</script>
+</html>

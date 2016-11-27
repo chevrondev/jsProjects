@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>JavaScript Read more Toggle</title>
+		
+		
+		<style>	
+			body{
+				background-color: #eee;
+			}
+			
+			#content{
+				width: 500px;
+				padding: 0 28px 28px 28px;
+				font-family: calibri;
+				font-size: 18px;
+				color: #444;
+				margin: 0 auto;
+				max-height: 270px;
+				overflow: hidden;
+				background-color: #fff;
+				
+				/*Transition*/
+				-webkit-transition: max-height 0.8s;
+				-moz-transition: max-height 0.8s;
+				transition: max-height 0.8s;
+			}	
+			
+			#content.open{
+				max-height: 1000px;
+				
+				/*Transition*/
+				-webkit-transition: max-height 0.8s;
+				-moz-transition: max-height 0.8s;
+				transition: max-height 0.8s;
+			}
+			
+			#show_more{
+				color: #fff;
+				display: block;
+				width: 75px;
+				font-family: calibri;
+				font-size: 10px;
+				text-transform: uppercase;
+				text-align: center;
+				padding: 5px;
+				margin: 10px auto;
+				position: 200px;
+				cursor: pointer;
+				background-color: #1594e5;
+			}			
+		</style>
+		
+		
+	</head>
+	<body>
+		
+	
+			<section id="content">
+				<h1>JavaScript</h1>
+				<p>
+					In computing, JavaScript is a high-level, dynamic, untyped, and interpreted programming language.
+					It has been standardized in the ECMAScript language specification.Alongside HTML and CSS, JavaScript is one of the 
+					three core technologies of World Wide Web content production; the majority of websites employ it, and all modern 
+					Web browsers supported it without the need for plug-ins. JavaScript is prototype-based with first-class functions, 
+					making it a multi-paradigm language, supporting object-oriented, imperative, and functional programming styles.
+					It has an API for working with text, arrays, dates and regular expressions, but does not include any I/O, such as 
+					networking, storage, or graphics facilities, relying for these upon the host environment in which it is embedded.
+					Although there are strong outward similarities between JavaScript and Java, including language name, syntax, and 
+					respective standard libraries, the two are distinct languages and differ greatly in their design. JavaScript was 
+					influenced by programming languages such as Self and Scheme.
+					JavaScript is also used in environments that are not Web-based, such as PDF documents, site-specific browsers, and 
+					desktop widgets. Newer and faster JavaScript virtual machines (VMs) and platforms built upon them have also increased 
+					the popularity of JavaScript for server-side Web applications. On the client side, developers have traditionally 
+					implemented JavaScript as an interpreted language, but more recent browsers perform just-in-time compilation.
+					Programmers also use JavaScript in video-game development, in crafting desktop and mobile applications, and in 
+					server-side network programming with run-time environments such as Node.js.
+				</p>
+			</section>
+			<a id="show_more">Read More...</a>
+			
+	</body>
+	<script type="text/javascript">
+		var content = document.getElementById('content');
+		var button = document.getElementById('show_more');
+		
+		button.onclick = function(){
+			if(content.className == "open"){
+				content.className = "";
+				button.innerHTML = "read more...";
+			}else{
+				content.className = "open";
+				button.innerHTML = "show less";
+			}
+		};
+	</script>
+</html>
